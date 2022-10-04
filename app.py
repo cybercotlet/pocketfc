@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-from st_aggrid import AgGrid, GridUpdateMode, GridOptionsBuilder
+from st_aggrid import AgGrid, GridUpdateMode, GridOptionsBuilder, JsCode, ColumnsAutoSizeMode
 from button_colors import ButtonColors
 
 st.set_page_config(page_title="Nintendo Football Club Combo Cards Dashboard",
@@ -61,7 +61,7 @@ yellow_card_lst = [
 ]
 
 # ------------ SIDE BAR ------------
-st.sidebar.image("./logo.png", width=200) # Adding logo
+# st.sidebar.image("./logo.png", width=200) # Adding logo
 st.sidebar.header("Filter by Cards:")
 green_cards = st.sidebar.multiselect(
     "TACTICAL",
@@ -113,16 +113,46 @@ st.sidebar.caption("Created by cybercotlet")
 ButtonColors.color()
 
 # ------------ MAIN PAGE ------------
-st.header("Combo Cards Dashboard")
+st.header(":soccer: Nintendo Pocket Football Club :soccer: ")
+st.subheader("Combo Cards Dashboard")
 # --- Table configuration ---
-gd = GridOptionsBuilder.from_dataframe(df)
-gd.configure_pagination(enabled=True)
-gd.configure_default_column(editable=True, groupable=True)
-gd.configure_selection(selection_mode="single")
+gd = GridOptionsBuilder.from_dataframe(df_selection)
+cellsytle_jscode = JsCode("""
+function(params){
+    if (["Set Plays", "Analysis", "Marking", "Countering", "Pressuring", "Line Control", "MiniGame"].includes(params.value) ) {
+        return { 
+            'backgroundColor': '#47C129',
+        }
+    }
+    if (["Shooting", "Sliding", "Passing", "Heading", "Freestyling", "Dribbling", "Place Kicks"].includes(params.value) ) {
+        return { 
+            'backgroundColor': '#DA3A13',
+        }
+    }
+    if (["Weights", "Agility", "Aerobics", "Kicking", "Stretching", "Running", "Sprinting"].includes(params.value) ) {
+        return { 
+            'backgroundColor': '#2173C7',
+        }
+    }
+    if (["Spa", "Judo", "PK Practice", "Oil Therapy", "Meditation", "Visualising", "Gaming", "Signing", "MiniCamp"].includes(params.value) ) {
+        return {
+            'color': '#414141',
+            'backgroundColor': '#F9C900',
+        }
+    }
+    if (["Desperate Saves", "Titanic Goalie", "Super Save", "Goalie Runs Up"].includes(params.value) ) {
+        return {
+            'color': 'white',
+            'backgroundColor': '#9932CC'
+        }
+    }
+}
+""")
+gd.configure_columns(column_names=["Combo Name", "Card1", "Card2", "Card3"], cellStyle=cellsytle_jscode, editable=True)
 gd_options = gd.build()
-table = AgGrid(df_selection, gridOptions=gd_options,
-                height=None,
-                update_mode=GridUpdateMode.SELECTION_CHANGED,
+table = AgGrid(df_selection, 
+                gridOptions=gd_options,
+                columns_auto_size_mode = ColumnsAutoSizeMode.FIT_CONTENTS,
                 allow_unsafe_jscode=True
 )
 sel_row = table["selected_rows"]
