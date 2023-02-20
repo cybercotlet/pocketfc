@@ -103,6 +103,10 @@ class ButtonColors:
         background-color: #F9C900 !important;
         color: #414141 !important;
         }
+        span[aria-label="Meeting, close by backspace"] {
+        background-color: #F9C900 !important;
+        color: #414141 !important;
+        }
         span[aria-label="Gaming, close by backspace"] {
         background-color: #F9C900 !important;
         color: #414141 !important;
@@ -116,10 +120,6 @@ class ButtonColors:
         color: #414141 !important;
         }
         span[aria-label="Karaoke, close by backspace"] {
-        background-color: #F9C900 !important;
-        color: #414141 !important;
-        }
-        span[aria-label="Meeting, close by backspace"] {
         background-color: #F9C900 !important;
         color: #414141 !important;
         }
