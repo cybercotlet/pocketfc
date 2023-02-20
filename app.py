@@ -136,7 +136,7 @@ function(params){
             'backgroundColor': '#2173C7',
         }
     }
-    if (["Spa", "Judo", "PK Practice", "Oil Therapy", "Meditation", "Visualising", "Gaming", "Signing", "MiniCamp"].includes(params.value) ) {
+    if (["Spa", "Judo", "PK Practice", "Oil Therapy", "Meditation", "Visualising", "Gaming", "Signing", "MiniCamp", "Karaoke", "Meeting"].includes(params.value) ) {
         return {
             'color': '#414141',
             'backgroundColor': '#F9C900',
