@@ -115,6 +115,14 @@ class ButtonColors:
         background-color: #F9C900 !important;
         color: #414141 !important;
         }
+        span[aria-label="Karaoke, close by backspace"] {
+        background-color: #F9C900 !important;
+        color: #414141 !important;
+        }
+        span[aria-label="Meeting, close by backspace"] {
+        background-color: #F9C900 !important;
+        color: #414141 !important;
+        }
         </style>
         """,
             unsafe_allow_html=True,
