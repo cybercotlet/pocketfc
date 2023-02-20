@@ -55,9 +55,11 @@ yellow_card_lst = [
     "Oil Therapy",
     "Meditation",
     "Visualising",
+    "Meeting",
     "Gaming",
     "Signing",
-    "MiniCamp"
+    "MiniCamp",
+    "Karaoke"
 ]
 
 # ------------ SIDE BAR ------------
